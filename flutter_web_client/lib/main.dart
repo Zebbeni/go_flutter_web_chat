@@ -45,8 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
             RawKeyboardListener(
               focusNode: FocusNode(),
               onKey: (event) {
-                // todo: We should be able to use _sendMessage as the TextField's
-                // onSubmitted callback, but this isn't working for web right now. 
+                // todo: We ought to be able to use _sendMessage as the TextField's
+                // onSubmitted callback, but this isn't working for web right now.
+                // https://github.com/flutter/flutter/issues/19027
                 bool isRawKeyEvent = event.runtimeType == RawKeyDownEvent;
                 bool isEnter = event?.logicalKey?.keyId == 54;
                 if (isRawKeyEvent && isEnter) {
@@ -56,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 controller: _controller,
                 decoration: InputDecoration(labelText: 'type a message and hit enter'),
-                // onSaved: (_) => _sendMessage(),
               ),
             ),
           ],
