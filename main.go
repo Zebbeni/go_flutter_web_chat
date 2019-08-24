@@ -41,6 +41,11 @@ func webSocketHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if err := ws.WriteMessage(websocket.TextMessage, []byte("created socket")); err != nil {
+		log.Println("Error writing initial message to client:", err)
+		return
+	}
+
 	// reader runs until it disconnects from the websocket.
 	reader(ws)
 }
@@ -53,16 +58,15 @@ func reader(ws *websocket.Conn) {
 	log.Println("Got a connection")
 
 	for {
-		messageType, messageBytes, err := ws.ReadMessage()
+		_, messageBytes, err := ws.ReadMessage()
 		if err != nil {
 			log.Println("Error reading from client:", err)
 			return
 		}
 
-		response := "Received client message: '" + string(messageBytes) + "'"
-		log.Println(response)
+		response := "processed message: '" + string(messageBytes) + "'"
 
-		if err := ws.WriteMessage(messageType, []byte(response)); err != nil {
+		if err := ws.WriteMessage(websocket.TextMessage, []byte(response)); err != nil {
 			log.Println("Error writing to client:", err)
 			return
 		}

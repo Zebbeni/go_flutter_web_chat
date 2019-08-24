@@ -22,9 +22,8 @@ class MyHomePage extends StatefulWidget {
 
   MyHomePage({Key key, @required this.channel})
     : super(key: key) {
-      print(">>> create home page");
       this.channel.stream.listen((msg) {
-        print("Client received: $msg"); // print channel messages from server
+        print("Server message: $msg"); // print channel messages from server
       });
     }
 
@@ -43,21 +42,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Form(
-              child: TextFormField(
+            RawKeyboardListener(
+              focusNode: FocusNode(),
+              onKey: (event) {
+                // todo: We should be able to use _sendMessage as the TextField's
+                // onSubmitted callback, but this isn't working for web right now. 
+                bool isRawKeyEvent = event.runtimeType == RawKeyDownEvent;
+                bool isEnter = event?.logicalKey?.keyId == 54;
+                if (isRawKeyEvent && isEnter) {
+                  _sendMessage();
+                }
+              },
+              child: TextField(
                 controller: _controller,
                 decoration: InputDecoration(labelText: 'type a message and hit enter'),
-                onFieldSubmitted: (_) => _sendMessage(),
+                // onSaved: (_) => _sendMessage(),
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _sendMessage,
-        tooltip: 'Send message',
-        child: Icon(Icons.send),
-      ), // This
     );
   }
 
