@@ -8,9 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'WebSocket Demo',
       home: MyHomePage(
-        title: 'Websocket Home Page',
         channel: HtmlWebSocketChannel.connect('ws://localhost:8080/ws'),
       ),
     );
@@ -18,10 +18,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  final String title;
   final HtmlWebSocketChannel channel;
 
-  MyHomePage({Key key, @required this.title, @required this.channel})
+  MyHomePage({Key key, @required this.channel})
     : super(key: key) {
       print(">>> create home page");
       this.channel.stream.listen((msg) {
@@ -39,9 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -54,13 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 onFieldSubmitted: (_) => _sendMessage(),
               ),
             ),
-            StreamBuilder(
-              builder: (context, snapshot) {
-                return Padding(padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: Text(snapshot.hasData ? '${snapshot.data}' :  ''),
-                );
-              },
-            )
           ],
         ),
       ),
