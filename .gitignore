@@ -1,0 +1,6 @@
+# Executable
+go_websocket_server
+# VS Code files
+.vscode/*
+# SSH Files
+digital_ocean_1*
