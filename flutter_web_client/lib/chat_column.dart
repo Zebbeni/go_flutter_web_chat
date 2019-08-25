@@ -3,7 +3,6 @@ import 'package:flutter_web/foundation.dart';
 import 'package:web_socket_channel/html.dart';
 
 class ChatColumn extends StatefulWidget {
-  final TextEditingController controller = TextEditingController();
   final HtmlWebSocketChannel channel;
 
   ChatColumn({Key key, @required this.channel}) : super(key: key);
