@@ -23,9 +23,6 @@ class _LoginDialogState extends State<LoginDialog> {
           children: <Widget>[
             Text(
               'Enter a Name',
-              style: TextStyle(
-                fontFamily: 'Hammersmith',
-              ),
             ),
             RawKeyboardListener(
               focusNode: FocusNode(),
@@ -52,7 +49,6 @@ class _LoginDialogState extends State<LoginDialog> {
   }
 
   void _sendMessage() {
-    print(">>> set name request: ${_controller.text}");
     if (_controller.text.isNotEmpty) {
       widget.channel.sink.add(_controller.text);
     }

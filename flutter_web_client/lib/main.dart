@@ -9,6 +9,9 @@ void main() => runApp(
   MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'WebSocket Demo',
+    theme: ThemeData(
+      fontFamily: 'Hammersmith One',
+    ),
     home: MyHomePage(
       channel: HtmlWebSocketChannel.connect('ws://localhost:8080/ws'),
     ),
@@ -32,9 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Scaffold(
+    return Scaffold(
         body: Stack(
           children: <Widget>[
             Lobby(
@@ -45,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
     );
   }
 

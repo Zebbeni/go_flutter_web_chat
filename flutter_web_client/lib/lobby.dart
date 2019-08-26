@@ -16,11 +16,29 @@ class Lobby extends StatefulWidget {
 class LobbyState extends State<Lobby> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ChatTextField(channel: widget.channel,)
-      ],
+    return Container(
+      child: Row(
+        children: <Widget>[
+            SizedBox.fromSize(
+              size: Size.fromWidth(200.0),
+              child: Column(
+                children: <Widget>[
+                  Text("Example Name 1"),
+                  Text("Example Name 2"),
+                ],
+              ),
+            ),
+            SizedBox.fromSize(
+              size: Size.fromWidth(500.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ChatTextField(channel: widget.channel,)
+                ],
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
