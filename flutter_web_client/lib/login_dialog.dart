@@ -27,4 +27,10 @@ class _LoginDialogState extends State<LoginDialog> {
   //     widget.channel.sink.add(_controller.text);
   //   }
   // }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
