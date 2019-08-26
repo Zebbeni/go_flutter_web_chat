@@ -1,0 +1,10 @@
+[
+    {
+        "family": "Hammersmith",
+        "fonts": [
+            {
+                "asset": "fonts/HammersmithOne-Regular.ttf"
+            }
+        ]
+    }
+]

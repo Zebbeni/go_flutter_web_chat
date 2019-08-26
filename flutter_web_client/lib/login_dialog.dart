@@ -23,6 +23,9 @@ class _LoginDialogState extends State<LoginDialog> {
           children: <Widget>[
             Text(
               'Enter a Name',
+              style: TextStyle(
+                fontFamily: 'Hammersmith',
+              ),
             ),
             RawKeyboardListener(
               focusNode: FocusNode(),

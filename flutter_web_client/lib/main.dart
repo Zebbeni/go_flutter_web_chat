@@ -5,20 +5,15 @@ import 'package:web_socket_channel/html.dart';
 import 'lobby.dart';
 import 'login_dialog.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'WebSocket Demo',
-      home: MyHomePage(
-        channel: HtmlWebSocketChannel.connect('ws://localhost:8080/ws'),
-      ),
-    );
-  }
-}
+void main() => runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'WebSocket Demo',
+    home: MyHomePage(
+      channel: HtmlWebSocketChannel.connect('ws://localhost:8080/ws'),
+    ),
+  )
+);
 
 class MyHomePage extends StatefulWidget {
   final HtmlWebSocketChannel channel;
