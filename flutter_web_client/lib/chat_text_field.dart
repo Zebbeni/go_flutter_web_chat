@@ -41,4 +41,10 @@ class ChatTextFieldState extends State<ChatTextField> {
       widget.channel.sink.add(_controller.text);
     }
   }
+
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 }

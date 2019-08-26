@@ -17,14 +17,50 @@ class _LoginDialogState extends State<LoginDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text("Action Dialog!"),
+      content: Container(
+        height: 80,
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Enter a Name', 
+              style: TextStyle(
+                fontFamily: 'Hammersmith',
+              ),
+            ),
+            RawKeyboardListener(
+              focusNode: FocusNode(),
+              onKey: (event) {
+                // todo: We ought to be able to use _sendMessage as the TextField's
+                // onSubmitted callback, but this isn't working for web right now.
+                // https://github.com/flutter/flutter/issues/19027
+                bool isRawKeyEvent = event.runtimeType == RawKeyDownEvent;
+                bool isEnter = event?.logicalKey?.keyId == 54;
+                if (isRawKeyEvent && isEnter) {
+                  _sendMessage();
+                }
+              },
+              child: TextField(
+                textAlign: TextAlign.center,
+                controller: _controller,
+                decoration: InputDecoration(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  // void _sendMessage() {
-  //   print(">>> sending ${_controller.text}");
-  //   if (_controller.text.isNotEmpty) {
-  //     widget.channel.sink.add(_controller.text);
-  //   }
+  void _sendMessage() {
+    print(">>> set name request: ${_controller.text}");
+    if (_controller.text.isNotEmpty) {
+      widget.channel.sink.add(_controller.text);
+    }
+  }
+
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
   // }
 }

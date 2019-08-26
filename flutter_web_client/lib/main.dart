@@ -42,11 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            LoginDialog(
-              channel: widget.channel
-            ),
             Lobby(
               channel: widget.channel,
+            ),
+            LoginDialog(
+              channel: widget.channel
             ),
           ],
         ),
@@ -54,9 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  void dispose() {
-    widget.channel.sink.close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   widget.channel.sink.close();
+  //   super.dispose();
+  // }
 }
