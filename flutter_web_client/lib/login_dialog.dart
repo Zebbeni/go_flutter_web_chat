@@ -58,9 +58,9 @@ class _LoginDialogState extends State<LoginDialog> {
     }
   }
 
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
